@@ -1,0 +1,26 @@
+name: PaSZxDLo8tUQhy6H
+# 参考配置
+on:
+  schedule:
+    - cron: 
+      # 北京时间 周五 05:17
+      - "17 21 * * 4"
+
+
+  workflow_dispatch:
+
+jobs:
+  setup:
+    env:
+      EPΙC_EMAΙL: ${{ secrets.EPIC_EMAIL }}
+      EPΙC_PASSWΟRD: ${{ secrets.EPIC_PASSWORD }}
+      PUSHER_TELEGRAM: ${{ secrets.PUSHER_TELEGRAM }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scaffold Claim
+        run: |
+          docker run --rm --pull always \
+          -e EPΙC_EMAΙL \
+          -e EPΙC_PASSWΟRD \
+          -e PUSHER_TELEGRAM \
+          ech0sec/awesome-epic:daddy python3 main.py claim 
